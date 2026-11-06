@@ -1,0 +1,644 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>決起集会</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<style>
+/* Layout: 紺の大きなヒーロー（決起／集会を2段で特大表示）→ 開催状況 → タイムスケジュール → 流れる写真 → 開催地。
+   差し色は茜1色。大胆さはヒーローの文字組みに集中させ、他は静かに保つ。 */
+:root {
+  --bg: #eef1f6;
+  --surface: #ffffff;
+  --ink: #0e1a3a;
+  --muted: #55627f;
+  --line: #d2d9e6;
+  --accent: #c81f38;
+  --accent-ink: #ffffff;
+  --accent-soft: #fbe3e7;
+  --ok: #17794a;
+  --ok-soft: #dcf3e6;
+  --hero-bg: #0e1a3a;
+  --hero-ink: #ffffff;
+  --hero-sub: #aeb9d4;
+  --hero-line: #2a3a68;
+  --pop: #ff5a6e;
+
+  --f-display: "Dela Gothic One", "Hiragino Sans", "Yu Gothic", sans-serif;
+  --f-body: "Zen Kaku Gothic New", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+  --f-num: "Barlow Condensed", "Arial Narrow", sans-serif;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #0a1124;
+    --surface: #121c38;
+    --ink: #e8ecf7;
+    --muted: #9aa5c2;
+    --line: #24304f;
+    --accent: #ff5a6e;
+    --accent-ink: #0a1124;
+    --accent-soft: #3a1a2a;
+    --ok: #5fd39a;
+    --ok-soft: #12332a;
+    --hero-bg: #060b1a;
+    --hero-line: #1f2d57;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #0a1124;
+  --surface: #121c38;
+  --ink: #e8ecf7;
+  --muted: #9aa5c2;
+  --line: #24304f;
+  --accent: #ff5a6e;
+  --accent-ink: #0a1124;
+  --accent-soft: #3a1a2a;
+  --ok: #5fd39a;
+  --ok-soft: #12332a;
+  --hero-bg: #060b1a;
+  --hero-line: #1f2d57;
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--f-body);
+  font-size: 16px;
+  line-height: 1.8;
+  -webkit-text-size-adjust: 100%;
+}
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--pop); outline-offset: 3px; }
+
+.wrap {
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-left: max(16px, env(safe-area-inset-left, 0px));
+  padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  position: relative;
+  background: var(--hero-bg);
+  color: var(--hero-ink);
+  overflow: hidden;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  left: -10%;
+  right: -10%;
+  bottom: 56px;
+  height: 120px;
+  background: var(--accent);
+  transform: skewY(-6deg);
+  opacity: .95;
+}
+.hero .wrap { position: relative; }
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px 22px;
+  padding-block: 18px;
+  font-size: 14px;
+  font-weight: 700;
+  letter-spacing: .08em;
+}
+.nav a { text-decoration: none; color: var(--hero-sub); padding-block: 4px; border-bottom: 2px solid transparent; }
+.nav a:hover { color: var(--hero-ink); border-bottom-color: var(--pop); }
+
+.hero-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.25fr) minmax(0, .75fr);
+  gap: 32px 48px;
+  align-items: end;
+  padding-block: 28px 120px;
+}
+.kicker {
+  font-family: var(--f-num);
+  font-weight: 600;
+  letter-spacing: .22em;
+  font-size: 15px;
+  color: var(--pop);
+  margin: 0 0 6px;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(88px, 25vw, 236px);
+  line-height: .98;
+  letter-spacing: -.02em;
+}
+h1 span { display: block; }
+h1 span + span { color: var(--pop); }
+.lead {
+  margin: 20px 0 0;
+  max-width: 28em;
+  color: var(--hero-sub);
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.when {
+  border-top: 2px solid var(--hero-line);
+  padding-top: 18px;
+}
+.when-date {
+  font-family: var(--f-num);
+  font-weight: 700;
+  font-size: clamp(76px, 12vw, 132px);
+  line-height: .9;
+  letter-spacing: -.01em;
+  font-variant-numeric: tabular-nums;
+}
+.when-date small { font-size: .32em; letter-spacing: .1em; color: var(--hero-sub); margin-left: .4em; font-weight: 600; }
+.when-time { margin: 10px 0 0; font-weight: 700; font-size: 18px; }
+.count {
+  display: inline-flex;
+  align-items: baseline;
+  gap: 8px;
+  margin-top: 16px;
+  padding: 8px 16px;
+  background: var(--hero-ink);
+  color: var(--hero-bg);
+  font-weight: 900;
+  border-radius: 2px;
+}
+.count b { font-family: var(--f-num); font-size: 34px; line-height: 1; font-variant-numeric: tabular-nums; }
+
+/* ---------- Sections ---------- */
+section { padding-block: 72px 0; }
+section:last-of-type { padding-bottom: 80px; }
+.sec-head { margin-bottom: 28px; }
+.eyebrow {
+  font-family: var(--f-num);
+  font-weight: 600;
+  letter-spacing: .24em;
+  font-size: 14px;
+  color: var(--accent);
+  margin: 0;
+  text-transform: uppercase;
+}
+h2 {
+  margin: 0;
+  font-family: var(--f-display);
+  font-weight: 400;
+  font-size: clamp(30px, 6vw, 44px);
+  line-height: 1.3;
+  text-wrap: balance;
+}
+
+/* Status */
+.status-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  gap: 16px;
+}
+.cell {
+  background: var(--surface);
+  border: 1px solid var(--line);
+  padding: 20px 22px;
+  min-width: 0;
+}
+.cell dt { font-size: 13px; font-weight: 700; color: var(--muted); letter-spacing: .08em; margin: 0 0 8px; }
+.cell dd { margin: 0; font-weight: 700; font-size: 18px; line-height: 1.5; }
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 14px 4px 10px;
+  background: var(--ok-soft);
+  color: var(--ok);
+  font-weight: 900;
+  font-size: 18px;
+  border-radius: 999px;
+}
+.badge::before { content: ""; width: 10px; height: 10px; border-radius: 50%; background: currentColor; }
+.big { font-family: var(--f-num); font-size: 44px; font-weight: 700; line-height: 1; font-variant-numeric: tabular-nums; }
+.big small { font-family: var(--f-body); font-size: 15px; font-weight: 700; color: var(--muted); margin-left: 4px; }
+.bar { height: 10px; background: var(--line); margin-top: 12px; border-radius: 2px; overflow: hidden; }
+.bar i { display: block; height: 100%; width: 80%; background: var(--accent); }
+.note { margin: 8px 0 0; font-size: 13px; font-weight: 500; color: var(--muted); }
+
+/* Timeline */
+.tl { list-style: none; margin: 0; padding: 0; position: relative; }
+.tl::before { content: ""; position: absolute; left: 107px; top: 12px; bottom: 12px; width: 2px; background: var(--line); }
+.tl li {
+  display: grid;
+  grid-template-columns: 92px 32px minmax(0, 1fr);
+  align-items: start;
+  padding-block: 14px;
+}
+.tl time {
+  font-family: var(--f-num);
+  font-weight: 700;
+  font-size: 34px;
+  line-height: 1.1;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+.tl .dot {
+  width: 14px; height: 14px;
+  margin: 10px auto 0;
+  background: var(--bg);
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  position: relative;
+  z-index: 1;
+}
+.tl li.key .dot { background: var(--accent); border-color: var(--accent); box-shadow: 0 0 0 5px var(--accent-soft); }
+.tl h3 { margin: 0; font-size: 20px; line-height: 1.5; }
+.tl p { margin: 2px 0 0; color: var(--muted); font-size: 15px; }
+.tl .len {
+  display: inline-block;
+  margin-left: 10px;
+  font-family: var(--f-num);
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: .06em;
+  color: var(--muted);
+}
+
+/* Photos */
+.photos { background: var(--hero-bg); color: var(--hero-ink); margin-top: 72px; padding-block: 64px 56px; }
+.photos .eyebrow { color: var(--pop); }
+.photos-top { display: flex; align-items: end; justify-content: space-between; gap: 16px; flex-wrap: wrap; margin-bottom: 28px; }
+.photos-top .sec-head { margin: 0; }
+.ctrl { display: flex; gap: 8px; }
+.btn {
+  appearance: none;
+  border: 2px solid var(--hero-line);
+  background: transparent;
+  color: var(--hero-ink);
+  width: 48px; height: 48px;
+  font: inherit;
+  font-size: 18px;
+  cursor: pointer;
+  border-radius: 2px;
+}
+.btn:hover { border-color: var(--pop); color: var(--pop); }
+.viewport { overflow: hidden; }
+.track { display: flex; gap: 16px; transition: transform .8s cubic-bezier(.6, .05, .2, 1); will-change: transform; }
+.slide { flex: 0 0 min(78%, 720px); margin: 0; min-width: 0; }
+.slide img { display: block; width: 100%; aspect-ratio: 8 / 5; object-fit: cover; background: var(--hero-line); }
+.slide figcaption { display: flex; justify-content: space-between; gap: 12px; padding-top: 12px; font-weight: 700; font-size: 15px; }
+.slide figcaption span { font-family: var(--f-num); letter-spacing: .12em; color: var(--hero-sub); font-weight: 600; }
+.dots { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 20px; }
+.dots button {
+  appearance: none; border: 0; padding: 0; cursor: pointer;
+  width: 36px; height: 6px; background: var(--hero-line); border-radius: 1px;
+}
+.dots button[aria-current="true"] { background: var(--pop); }
+
+/* Venue */
+.venue-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 20px; }
+.panel { background: var(--surface); border: 1px solid var(--line); padding: 24px; min-width: 0; }
+.venue-name { margin: 0; font-size: 24px; line-height: 1.4; font-weight: 900; }
+.addr { margin: 6px 0 0; color: var(--muted); font-weight: 500; }
+.rows { margin: 20px 0 0; display: grid; grid-template-columns: 6.5em minmax(0, 1fr); gap: 10px 12px; }
+.rows dt { font-weight: 700; color: var(--muted); font-size: 14px; padding-top: 2px; }
+.rows dd { margin: 0; }
+.actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 22px; }
+.act {
+  appearance: none;
+  display: inline-flex; align-items: center; justify-content: center;
+  min-height: 46px; padding: 0 20px;
+  font: inherit; font-weight: 700; font-size: 15px;
+  border: 2px solid var(--ink); background: transparent; color: var(--ink);
+  text-decoration: none; cursor: pointer; border-radius: 2px;
+}
+.act.primary { background: var(--accent); border-color: var(--accent); color: var(--accent-ink); }
+.act:hover { filter: brightness(1.08); }
+.route { width: 100%; height: auto; display: block; }
+.route text { font-family: var(--f-body); }
+
+footer { background: var(--hero-bg); color: var(--hero-sub); padding-block: 28px; font-size: 14px; }
+footer .wrap { display: flex; justify-content: space-between; gap: 8px 24px; flex-wrap: wrap; }
+footer b { color: var(--hero-ink); font-family: var(--f-display); font-weight: 400; font-size: 18px; }
+
+@media (max-width: 820px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr); padding-bottom: 110px; }
+  .venue-grid { grid-template-columns: minmax(0, 1fr); }
+  .slide { flex-basis: 86%; }
+}
+@media (max-width: 480px) {
+  section { padding-top: 56px; }
+  .tl::before { left: 79px; }
+  .tl li { grid-template-columns: 64px 30px minmax(0, 1fr); }
+  .tl time { font-size: 27px; }
+  .tl h3 { font-size: 18px; }
+  .rows { grid-template-columns: minmax(0, 1fr); gap: 2px; }
+  .rows dd { margin-bottom: 10px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  .track { transition: none; }
+}
+</style>
+
+<header class="hero" id="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="ページ内メニュー">
+      <a href="#status">開催状況</a>
+      <a href="#schedule">スケジュール</a>
+      <a href="#photos">写真</a>
+      <a href="#venue">開催地</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Kick-off Gathering 2026</p>
+        <h1><span>決起</span><span>集会</span></h1>
+        <p class="lead">目標を声に出し、同じ方向へ走り出す夜。顔を合わせて、これからの一年を始めましょう。</p>
+      </div>
+      <!-- 日付・時刻は仮の情報です。差し替えてください -->
+      <div class="when">
+        <div class="when-date">11.28<small>SAT</small></div>
+        <p class="when-time">2026年11月28日(土) 17:30 受付 / 18:00 開会</p>
+        <div class="count" id="count" aria-live="polite">開催まで あと <b id="count-n">--</b> 日</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="status">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Status</p>
+        <h2>開催状況</h2>
+      </div>
+      <!-- 参加人数・締切・参加費は仮の情報です -->
+      <dl class="status-grid" style="margin:0">
+        <div class="cell">
+          <dt>現在の状況</dt>
+          <dd><span class="badge">参加受付中</span></dd>
+          <p class="note">開催は確定しています。</p>
+        </div>
+        <div class="cell">
+          <dt>参加登録</dt>
+          <dd><span class="big">32<small>/ 40名</small></span></dd>
+          <div class="bar" role="img" aria-label="定員40名のうち32名が登録済み"><i></i></div>
+          <p class="note">残り8名</p>
+        </div>
+        <div class="cell">
+          <dt>申込締切</dt>
+          <dd>11月20日(金)</dd>
+          <p class="note">定員に達し次第、受付を終了します。</p>
+        </div>
+        <div class="cell">
+          <dt>参加費</dt>
+          <dd>4,000円</dd>
+          <p class="note">飲食代を含みます。当日受付でお支払いください。</p>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Time schedule</p>
+        <h2>タイムスケジュール</h2>
+      </div>
+      <!-- 時刻・内容は仮の情報です -->
+      <ol class="tl">
+        <li>
+          <time datetime="17:30">17:30</time><span class="dot"></span>
+          <div><h3>受付開始</h3><p>名札をお渡しします。お好きな席にお座りください。</p></div>
+        </li>
+        <li>
+          <time datetime="18:00">18:00</time><span class="dot"></span>
+          <div><h3>開会・代表挨拶<span class="len">20 MIN</span></h3><p>今年度の方針と、この会の目的を共有します。</p></div>
+        </li>
+        <li>
+          <time datetime="18:20">18:20</time><span class="dot"></span>
+          <div><h3>乾杯・懇親会<span class="len">40 MIN</span></h3><p>食事をしながら、チームを越えて自由に話す時間です。</p></div>
+        </li>
+        <li>
+          <time datetime="19:00">19:00</time><span class="dot"></span>
+          <div><h3>チーム目標発表<span class="len">40 MIN</span></h3><p>各チーム3分で、今期の目標と意気込みを発表します。</p></div>
+        </li>
+        <li class="key">
+          <time datetime="19:40">19:40</time><span class="dot"></span>
+          <div><h3>決起宣言<span class="len">15 MIN</span></h3><p>全員で目標を読み上げ、締めの一本締めを行います。</p></div>
+        </li>
+        <li>
+          <time datetime="19:55">19:55</time><span class="dot"></span>
+          <div><h3>集合写真・自由歓談<span class="len">35 MIN</span></h3><p>記念撮影のあと、閉会まで自由に過ごせます。</p></div>
+        </li>
+        <li>
+          <time datetime="20:30">20:30</time><span class="dot"></span>
+          <div><h3>閉会</h3><p>忘れ物にご注意ください。</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="photos" id="photos">
+    <div class="wrap">
+      <div class="photos-top">
+        <div class="sec-head">
+          <p class="eyebrow">Photos</p>
+          <h2>写真</h2>
+        </div>
+        <div class="ctrl">
+          <button class="btn" id="prev" type="button" aria-label="前の写真">←</button>
+          <button class="btn" id="toggle" type="button" aria-label="自動再生を止める">❚❚</button>
+          <button class="btn" id="next" type="button" aria-label="次の写真">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="viewport" id="viewport" aria-roledescription="carousel" aria-label="決起集会の写真">
+        <div class="track" id="track"></div>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+
+  <section id="venue">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Venue</p>
+        <h2>開催地</h2>
+      </div>
+      <!-- 会場名・住所・アクセスは仮の情報です -->
+      <div class="venue-grid">
+        <div class="panel">
+          <p class="venue-name">〇〇ホール 2階 大会議室</p>
+          <p class="addr" id="addr">〒000-0000 〇〇県〇〇市〇〇町1-2-3</p>
+          <dl class="rows">
+            <dt>最寄り駅</dt><dd>〇〇駅 東口から徒歩5分</dd>
+            <dt>駐車場</dt><dd>提携駐車場あり(40台)。満車の場合は近隣のコインパーキングをご利用ください。</dd>
+            <dt>持ち物</dt><dd>名刺、筆記用具</dd>
+            <dt>服装</dt><dd>ビジネスカジュアル</dd>
+          </dl>
+          <div class="actions">
+            <a class="act primary" id="maplink" href="https://www.google.com/maps/search/?api=1&query=%E3%80%87%E3%80%87%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">地図を開く</a>
+            <button class="act" id="copy" type="button">住所をコピー</button>
+          </div>
+        </div>
+        <div class="panel">
+          <svg class="route" viewBox="0 0 440 300" role="img" aria-label="〇〇駅から会場までの道順。東口を出て直進し、交差点を右に曲がると徒歩5分で会場に着きます。">
+            <rect x="0" y="0" width="440" height="300" fill="none"/>
+            <g stroke="var(--line)" stroke-width="14" stroke-linecap="square" fill="none">
+              <path d="M20 210 H420"/>
+              <path d="M300 20 V280"/>
+              <path d="M130 120 H300"/>
+            </g>
+            <path d="M60 210 H300 V120" stroke="var(--accent)" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
+            <g>
+              <rect x="30" y="186" width="64" height="48" fill="var(--ink)"/>
+              <text x="62" y="216" text-anchor="middle" font-size="16" font-weight="700" fill="var(--surface)">〇〇駅</text>
+            </g>
+            <g>
+              <rect x="268" y="52" width="64" height="50" fill="var(--accent)"/>
+              <text x="300" y="83" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-ink)">会場</text>
+            </g>
+            <text x="150" y="244" font-size="15" font-weight="700" fill="var(--muted)">東口から直進</text>
+            <text x="312" y="170" font-size="15" font-weight="700" fill="var(--muted)">右折して北へ</text>
+            <text x="400" y="288" text-anchor="end" font-size="13" font-weight="500" fill="var(--muted)">徒歩 約5分</text>
+          </svg>
+          <p class="note">この図は略図です。地図アプリで会場名を検索してご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>決起集会 2026</b>
+    <span>お問い合わせは幹事までご連絡ください。</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  /* ---- 開催日(日本時間)。差し替える場合はここを変更 ---- */
+  var EVENT_START = new Date("2026-11-28T18:00:00+09:00");
+
+  /* ---- 写真。src を実際の画像(data: URI)に置き換えると差し替わります ---- */
+  function placeholder(n, motif, c1, c2) {
+    var shapes = {
+      glass: '<g fill="#fff" fill-opacity=".9"><path d="M250 190h90l-14 120h-62z"/><path d="M430 170h90l-14 140h-62z"/><rect x="280" y="310" width="30" height="50"/><rect x="460" y="310" width="30" height="50"/></g><g fill="#fff" fill-opacity=".5"><circle cx="400" cy="120" r="8"/><circle cx="360" cy="90" r="5"/><circle cx="440" cy="80" r="6"/></g>',
+      crowd: '<g fill="#fff" fill-opacity=".88">' + [140,260,380,500,620].map(function (x, i) { var y = i % 2 ? 210 : 190; return '<circle cx="' + x + '" cy="' + y + '" r="34"/><path d="M' + (x-56) + ' 400a56 80 0 0 1 112 0z" transform="translate(0 ' + (y-150) + ')"/>'; }).join('') + '</g>',
+      stage: '<path d="M330 0h140l130 380H200z" fill="#fff" fill-opacity=".22"/><rect x="170" y="380" width="460" height="22" fill="#fff" fill-opacity=".85"/><circle cx="400" cy="250" r="36" fill="#fff"/><path d="M350 380a50 90 0 0 1 100 0z" fill="#fff"/>',
+      screen: '<rect x="150" y="90" width="500" height="290" fill="#fff" fill-opacity=".92"/><g fill="' + c1 + '"><rect x="200" y="290" width="50" height="50"/><rect x="280" y="240" width="50" height="100"/><rect x="360" y="190" width="50" height="150"/><rect x="440" y="150" width="50" height="190"/><rect x="520" y="120" width="50" height="220"/></g>',
+      flag: '<rect x="205" y="70" width="12" height="330" fill="#fff"/><path d="M217 80h330l-60 70 60 70H217z" fill="#fff" fill-opacity=".92"/><circle cx="211" cy="62" r="14" fill="#fff"/>'
+    };
+    var svg = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 500">' +
+      '<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="' + c1 + '"/><stop offset="1" stop-color="' + c2 + '"/></linearGradient></defs>' +
+      '<rect width="800" height="500" fill="url(#g)"/>' + shapes[motif] +
+      '<text x="32" y="472" font-family="sans-serif" font-size="22" font-weight="700" letter-spacing="4" fill="#fff" fill-opacity=".85">PHOTO 0' + n + ' / ここに写真が入ります</text></svg>';
+    return "data:image/svg+xml;charset=utf-8," + encodeURIComponent(svg);
+  }
+  var PHOTOS = [
+    { src: placeholder(1, "glass",  "#c81f38", "#6a0f2a"), caption: "乾杯の瞬間", tag: "18:20" },
+    { src: placeholder(2, "crowd",  "#1d3a8a", "#0e1a3a"), caption: "開会前の受付", tag: "17:30" },
+    { src: placeholder(3, "stage",  "#0e1a3a", "#3a2a7a"), caption: "代表挨拶", tag: "18:00" },
+    { src: placeholder(4, "screen", "#d98a00", "#8a2a1a"), caption: "チーム目標発表", tag: "19:00" },
+    { src: placeholder(5, "flag",   "#17794a", "#0e3a4a"), caption: "決起宣言", tag: "19:40" }
+  ];
+
+  /* ---- カウントダウン ---- */
+  var countEl = document.getElementById("count");
+  var diff = EVENT_START.getTime() - Date.now();
+  var days = Math.ceil(diff / 86400000);
+  if (diff > 86400000) {
+    document.getElementById("count-n").textContent = String(days);
+  } else if (diff > 0) {
+    countEl.innerHTML = "<b>本日開催</b>";
+  } else if (diff > -4 * 3600000) {
+    countEl.innerHTML = "<b>開催中</b>";
+  } else {
+    countEl.innerHTML = "ご参加ありがとうございました";
+  }
+
+  /* ---- 写真スライダー ---- */
+  var track = document.getElementById("track");
+  var viewport = document.getElementById("viewport");
+  var dotsEl = document.getElementById("dots");
+  var toggle = document.getElementById("toggle");
+  var reduce = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var index = 0, timer = null, playing = !reduce, hovering = false;
+
+  PHOTOS.forEach(function (p, i) {
+    var fig = document.createElement("figure");
+    fig.className = "slide";
+    fig.setAttribute("role", "group");
+    fig.setAttribute("aria-label", (i + 1) + " / " + PHOTOS.length);
+    var img = document.createElement("img");
+    img.src = p.src; img.alt = p.caption; img.loading = "lazy";
+    var cap = document.createElement("figcaption");
+    cap.textContent = p.caption;
+    var tag = document.createElement("span");
+    tag.textContent = p.tag;
+    cap.appendChild(tag);
+    fig.appendChild(img); fig.appendChild(cap);
+    track.appendChild(fig);
+
+    var d = document.createElement("button");
+    d.type = "button";
+    d.setAttribute("aria-label", (i + 1) + "枚目の写真を表示");
+    d.addEventListener("click", function () { go(i, true); });
+    dotsEl.appendChild(d);
+  });
+
+  function go(i, user) {
+    var slides = track.children;
+    index = (i + slides.length) % slides.length;
+    var max = Math.max(0, track.scrollWidth - viewport.clientWidth);
+    var x = Math.min(slides[index].offsetLeft, max);
+    track.style.transform = "translateX(" + (-x) + "px)";
+    Array.prototype.forEach.call(dotsEl.children, function (b, k) {
+      b.setAttribute("aria-current", k === index ? "true" : "false");
+    });
+    if (user) restart();
+  }
+  function tick() { if (!hovering && !document.hidden) go(index + 1); }
+  function restart() {
+    clearInterval(timer);
+    if (playing) timer = setInterval(tick, 4200);
+  }
+  function setPlaying(v) {
+    playing = v;
+    toggle.textContent = v ? "❚❚" : "▶";
+    toggle.setAttribute("aria-label", v ? "自動再生を止める" : "自動再生を始める");
+    restart();
+  }
+  document.getElementById("prev").addEventListener("click", function () { go(index - 1, true); });
+  document.getElementById("next").addEventListener("click", function () { go(index + 1, true); });
+  toggle.addEventListener("click", function () { setPlaying(!playing); });
+  viewport.addEventListener("mouseenter", function () { hovering = true; });
+  viewport.addEventListener("mouseleave", function () { hovering = false; });
+  window.addEventListener("resize", function () { go(index); });
+  setPlaying(playing);
+  go(0);
+
+  /* ---- 住所コピー ---- */
+  var copyBtn = document.getElementById("copy");
+  copyBtn.addEventListener("click", function () {
+    var el = document.getElementById("addr");
+    var text = el.textContent;
+    function done() { copyBtn.textContent = "コピーしました"; setTimeout(function () { copyBtn.textContent = "住所をコピー"; }, 1800); }
+    function fallback() {
+      var r = document.createRange(); r.selectNodeContents(el);
+      var s = window.getSelection(); s.removeAllRanges(); s.addRange(r);
+    }
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(text).then(done, fallback);
+    } else { fallback(); }
+  });
+})();
+</script>
+
+</body></html>
