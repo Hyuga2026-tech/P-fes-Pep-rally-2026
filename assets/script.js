@@ -1,26 +1,27 @@
 (function () {
   /* ---- 開催日(日本時間)。差し替える場合はここを変更 ---- */
-  var EVENT_START = new Date("2026-11-28T18:00:00+09:00");
+  var EVENT_START = new Date("2026-11-11T19:00:00+09:00");
 
   /* ---- 写真。assets/photos/ の画像を差し替え、ここのファイル名と説明を編集 ---- */
   var PHOTOS = [
-    { src: "assets/photos/photo-1.svg", caption: "乾杯の瞬間", tag: "18:20" },
-    { src: "assets/photos/photo-2.svg", caption: "開会前の受付", tag: "17:30" },
-    { src: "assets/photos/photo-3.svg", caption: "代表挨拶", tag: "18:00" },
-    { src: "assets/photos/photo-4.svg", caption: "チーム目標発表", tag: "19:00" },
-    { src: "assets/photos/photo-5.svg", caption: "決起宣言", tag: "19:40" }
+    { src: "assets/photos/photo-1.svg", },
+    { src: "assets/photos/photo-2.svg",},
+    { src: "assets/photos/photo-3.svg",},
+    { src: "assets/photos/photo-4.svg", },
+    { src: "assets/photos/photo-5.svg", }
   ];
 
-  /* ---- カウントダウン ---- */
+   /* ---- カウントダウン(日本時間のカレンダー上の日数で数える) ---- */
   var countEl = document.getElementById("count");
-  var diff = EVENT_START.getTime() - Date.now();
-  var days = Math.ceil(diff / 86400000);
-  if (diff > 86400000) {
+  function jstDay(d) {
+    var j = new Date(d.getTime() + 9 * 3600000);
+    return Date.UTC(j.getUTCFullYear(), j.getUTCMonth(), j.getUTCDate());
+  }
+  var days = Math.round((jstDay(EVENT_START) - jstDay(new Date())) / 86400000);
+  if (days > 0) {
     document.getElementById("count-n").textContent = String(days);
-  } else if (diff > 0) {
+  } else if (days === 0) {
     countEl.innerHTML = "<b>本日開催</b>";
-  } else if (diff > -4 * 3600000) {
-    countEl.innerHTML = "<b>開催中</b>";
   } else {
     countEl.innerHTML = "ご参加ありがとうございました";
   }
