@@ -1,0 +1,197 @@
+<!doctype html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>決起集会</title>
+<meta name="description" content="決起集会の開催状況、タイムスケジュール、写真、開催地をまとめた案内ページ。">
+<meta name="color-scheme" content="light dark">
+<meta property="og:type" content="website">
+<meta property="og:title" content="決起集会">
+<meta property="og:description" content="目標を声に出し、同じ方向へ走り出す夜。開催状況・スケジュール・開催地はこちら。">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%230e1a3a'/%3E%3Cpath d='M0 46 64 34v14L0 60z' fill='%23ff5a6e'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&family=Dela+Gothic+One&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&display=swap">
+<link rel="stylesheet" href="assets/style.css">
+</head>
+<body>
+<header class="hero" id="top">
+  <div class="wrap">
+    <nav class="nav" aria-label="ページ内メニュー">
+      <a href="#status">開催状況</a>
+      <a href="#schedule">スケジュール</a>
+      <a href="#photos">写真</a>
+      <a href="#venue">開催地</a>
+    </nav>
+    <div class="hero-grid">
+      <div>
+        <p class="kicker">Kick-off Gathering 2026</p>
+        <h1><span>決起</span><span>集会</span></h1>
+        <p class="lead">目標を声に出し、同じ方向へ走り出す夜。顔を合わせて、これからの一年を始めましょう。</p>
+      </div>
+      <!-- 日付・時刻は仮の情報です。差し替えてください -->
+      <div class="when">
+        <div class="when-date">11.28<small>SAT</small></div>
+        <p class="when-time">2026年11月28日(土) 17:30 受付 / 18:00 開会</p>
+        <div class="count" id="count" aria-live="polite">開催まで あと <b id="count-n">--</b> 日</div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section id="status">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Status</p>
+        <h2>開催状況</h2>
+      </div>
+      <!-- 参加人数・締切・参加費は仮の情報です -->
+      <dl class="status-grid" style="margin:0">
+        <div class="cell">
+          <dt>現在の状況</dt>
+          <dd><span class="badge">参加受付中</span></dd>
+          <p class="note">開催は確定しています。</p>
+        </div>
+        <div class="cell">
+          <dt>参加登録</dt>
+          <dd><span class="big">32<small>/ 40名</small></span></dd>
+          <div class="bar" role="img" aria-label="定員40名のうち32名が登録済み"><i></i></div>
+          <p class="note">残り8名</p>
+        </div>
+        <div class="cell">
+          <dt>申込締切</dt>
+          <dd>11月20日(金)</dd>
+          <p class="note">定員に達し次第、受付を終了します。</p>
+        </div>
+        <div class="cell">
+          <dt>参加費</dt>
+          <dd>4,000円</dd>
+          <p class="note">飲食代を含みます。当日受付でお支払いください。</p>
+        </div>
+      </dl>
+    </div>
+  </section>
+
+  <section id="schedule">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Time schedule</p>
+        <h2>タイムスケジュール</h2>
+      </div>
+      <!-- 時刻・内容は仮の情報です -->
+      <ol class="tl">
+        <li>
+          <time datetime="17:30">17:30</time><span class="dot"></span>
+          <div><h3>受付開始</h3><p>名札をお渡しします。お好きな席にお座りください。</p></div>
+        </li>
+        <li>
+          <time datetime="18:00">18:00</time><span class="dot"></span>
+          <div><h3>開会・代表挨拶<span class="len">20 MIN</span></h3><p>今年度の方針と、この会の目的を共有します。</p></div>
+        </li>
+        <li>
+          <time datetime="18:20">18:20</time><span class="dot"></span>
+          <div><h3>乾杯・懇親会<span class="len">40 MIN</span></h3><p>食事をしながら、チームを越えて自由に話す時間です。</p></div>
+        </li>
+        <li>
+          <time datetime="19:00">19:00</time><span class="dot"></span>
+          <div><h3>チーム目標発表<span class="len">40 MIN</span></h3><p>各チーム3分で、今期の目標と意気込みを発表します。</p></div>
+        </li>
+        <li class="key">
+          <time datetime="19:40">19:40</time><span class="dot"></span>
+          <div><h3>決起宣言<span class="len">15 MIN</span></h3><p>全員で目標を読み上げ、締めの一本締めを行います。</p></div>
+        </li>
+        <li>
+          <time datetime="19:55">19:55</time><span class="dot"></span>
+          <div><h3>集合写真・自由歓談<span class="len">35 MIN</span></h3><p>記念撮影のあと、閉会まで自由に過ごせます。</p></div>
+        </li>
+        <li>
+          <time datetime="20:30">20:30</time><span class="dot"></span>
+          <div><h3>閉会</h3><p>忘れ物にご注意ください。</p></div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <div class="photos" id="photos">
+    <div class="wrap">
+      <div class="photos-top">
+        <div class="sec-head">
+          <p class="eyebrow">Photos</p>
+          <h2>写真</h2>
+        </div>
+        <div class="ctrl">
+          <button class="btn" id="prev" type="button" aria-label="前の写真">←</button>
+          <button class="btn" id="toggle" type="button" aria-label="自動再生を止める">❚❚</button>
+          <button class="btn" id="next" type="button" aria-label="次の写真">→</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="viewport" id="viewport" aria-roledescription="carousel" aria-label="決起集会の写真">
+        <div class="track" id="track"></div>
+      </div>
+      <div class="dots" id="dots"></div>
+    </div>
+  </div>
+
+  <section id="venue">
+    <div class="wrap">
+      <div class="sec-head">
+        <p class="eyebrow">Venue</p>
+        <h2>開催地</h2>
+      </div>
+      <!-- 会場名・住所・アクセスは仮の情報です -->
+      <div class="venue-grid">
+        <div class="panel">
+          <p class="venue-name">〇〇ホール 2階 大会議室</p>
+          <p class="addr" id="addr">〒000-0000 〇〇県〇〇市〇〇町1-2-3</p>
+          <dl class="rows">
+            <dt>最寄り駅</dt><dd>〇〇駅 東口から徒歩5分</dd>
+            <dt>駐車場</dt><dd>提携駐車場あり(40台)。満車の場合は近隣のコインパーキングをご利用ください。</dd>
+            <dt>持ち物</dt><dd>名刺、筆記用具</dd>
+            <dt>服装</dt><dd>ビジネスカジュアル</dd>
+          </dl>
+          <div class="actions">
+            <a class="act primary" id="maplink" href="https://www.google.com/maps/search/?api=1&query=%E3%80%87%E3%80%87%E3%83%9B%E3%83%BC%E3%83%AB" target="_blank" rel="noopener">地図を開く</a>
+            <button class="act" id="copy" type="button">住所をコピー</button>
+          </div>
+        </div>
+        <div class="panel">
+          <svg class="route" viewBox="0 0 440 300" role="img" aria-label="〇〇駅から会場までの道順。東口を出て直進し、交差点を右に曲がると徒歩5分で会場に着きます。">
+            <rect x="0" y="0" width="440" height="300" fill="none"/>
+            <g stroke="var(--line)" stroke-width="14" stroke-linecap="square" fill="none">
+              <path d="M20 210 H420"/>
+              <path d="M300 20 V280"/>
+              <path d="M130 120 H300"/>
+            </g>
+            <path d="M60 210 H300 V120" stroke="var(--accent)" stroke-width="5" stroke-dasharray="2 10" stroke-linecap="round" fill="none"/>
+            <g>
+              <rect x="30" y="186" width="64" height="48" fill="var(--ink)"/>
+              <text x="62" y="216" text-anchor="middle" font-size="16" font-weight="700" fill="var(--surface)">〇〇駅</text>
+            </g>
+            <g>
+              <rect x="268" y="52" width="64" height="50" fill="var(--accent)"/>
+              <text x="300" y="83" text-anchor="middle" font-size="15" font-weight="700" fill="var(--accent-ink)">会場</text>
+            </g>
+            <text x="150" y="244" font-size="15" font-weight="700" fill="var(--muted)">東口から直進</text>
+            <text x="312" y="170" font-size="15" font-weight="700" fill="var(--muted)">右折して北へ</text>
+            <text x="400" y="288" text-anchor="end" font-size="13" font-weight="500" fill="var(--muted)">徒歩 約5分</text>
+          </svg>
+          <p class="note">この図は略図です。地図アプリで会場名を検索してご確認ください。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <b>決起集会 2026</b>
+    <span>お問い合わせは幹事までご連絡ください。</span>
+  </div>
+</footer>
+<script src="assets/script.js" defer></script>
+</body>
+</html>
