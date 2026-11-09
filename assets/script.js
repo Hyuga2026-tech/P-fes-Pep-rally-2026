@@ -4,11 +4,11 @@
 
   /* ---- 写真。assets/photos/ の画像を差し替え、ここのファイル名と説明を編集 ---- */
   var PHOTOS = [
-    { src: "assets/photos/photo-1.svg", },
-    { src: "assets/photos/photo-2.svg",},
-    { src: "assets/photos/photo-3.svg",},
-    { src: "assets/photos/photo-4.svg", },
-    { src: "assets/photos/photo-5.svg", }
+    { src: "assets/photos/photo-1.svg.jpg", },
+    { src: "assets/photos/photo-2.svg.jpg",},
+    { src: "assets/photos/photo-3.svg.jpg",},
+    { src: "assets/photos/photo-4.svg.jpg", },
+    { src: "assets/photos/photo-5.svg.jpg", }
   ];
 
    /* ---- カウントダウン(日本時間のカレンダー上の日数で数える) ---- */
