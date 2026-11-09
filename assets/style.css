@@ -334,8 +334,4 @@ footer b { color: var(--hero-ink); font-family: var(--f-display); font-weight: 4
 }
 
 .nav { align-items: center; }
-.nav img { display: block; height: 36px; width: auto; }
-@media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  .track { transition: none; }
-}
+.nav img { display: block; height: 32px; width: auto; filter: invert(1); }
