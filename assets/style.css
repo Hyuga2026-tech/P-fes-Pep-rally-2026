@@ -332,6 +332,9 @@ footer b { color: var(--hero-ink); font-family: var(--f-display); font-weight: 4
   .rows { grid-template-columns: minmax(0, 1fr); gap: 2px; }
   .rows dd { margin-bottom: 10px; }
 }
+
+.nav { align-items: center; }
+.nav img { display: block; height: 36px; width: auto; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   .track { transition: none; }
